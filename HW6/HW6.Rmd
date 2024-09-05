@@ -1,0 +1,73 @@
+---
+title: "1928-1969間，小兒麻痺在美國各州的發生率變化"
+output: github_document
+---
+## 資料前處理
+
+把資料讀進來
+```{r echo=T}
+polio<-read.csv("C:/Users/Administrator/Documents/POLIO_Incidence.csv",stringsAsFactors = F)
+head(polio)
+```
+
+將寬表格轉為長表格 
+```{r echo=T}
+#install.packages('Rcpp', dependencies = TRUE)
+#install.packages("reshape2")
+library(reshape2)
+polio.m <- melt(polio,id.vars = c('YEAR','WEEK'))
+head(polio.m)
+```
+
+處理缺值
+```{r echo=T}
+polio.m[polio.m$value=="-",]$value<-NA #處理缺值,將"-"轉為NA
+polio.m$value<-as.numeric(polio.m$value) #將value欄位轉為數字
+
+```
+
+計算年度發生率 
+```{r echo=T}
+polio.sumYear<- #各州各年度加總，計算該年度的發生率
+    aggregate(value~YEAR+variable,data=polio.m,FUN=sum,na.rm=F)
+head(polio.sumYear)
+```
+
+## 視覺化呈現
+
+安裝面量圖需要用到的package，以及一些基本數據。
+```{r echo=T}
+#install.packages("ggplot2")
+library(ggplot2) #******注意******
+#install.packages("choroplethr",dependencies = TRUE)
+
+library(choroplethr)
+#install.packages("choroplethrMaps") ##上次沒有安裝到這個package
+library(choroplethrMaps)
+data(df_pop_state) #記載各州人口數的資料
+state_choropleth(df_pop_state) #把各州人口畫在地圖上
+```
+
+##解釋如何選擇圖形種類
+圖表需求是，小兒麻痺在美國各州的發生率變化，
+因為需要的呈現要求有，州、變化率、跟年代，
+所以我選用xyplot並且以州作為區分。
+
+##程式碼以及圖形
+```{r echo=T}
+library(datasets)
+library(lattice)
+##Convert'Month'toafactorvariable
+
+
+xyplot(value~YEAR|variable,#y軸~x軸 |分組依據
+data=polio.sumYear,type="p",layout=c(10,10))#5rows,1column
+
+
+```
+
+
+#解釋圖形
+我以州作為分區，用算出來的變化率在圖表中呈現的方式是X軸，
+和年代在圖表中呈現的方式是y軸，
+一州一個圖表，經過圖片放大及縮小，很明顯的就可以比較每州或者是每年的變化率。

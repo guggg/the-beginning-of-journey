@@ -1,0 +1,644 @@
+---
+title: "大數據分析方法"
+author: "曾意儒 Yi-Ju Tseng, 長庚大學資管系"
+date: "March 21, 2016"
+output: ioslides_presentation
+subtitle: 資料處理與函數
+highlighter: highlight.js
+---
+
+##記得先把NBA14-15的資料讀進來
+```{r results='hide',message=FALSE,cache=T}
+if (!require('SportsAnalytics')){
+    install.packages("SportsAnalytics")
+    library(SportsAnalytics)
+}
+NBA1415<-fetch_NBAPlayerStatistics("14-15")
+NBA1415
+```
+
+##複習 Vector組合
+```{r}
+x<-1:3
+y<-10:12
+cbind(x, y) #組合Column列
+rbind(x, y) #組合Row行
+```
+##複習 表格資料
+```{r}
+head(NBA1415,3) #表格前三行
+nrow(NBA1415) #表格有幾行Row
+ncol(NBA1415) #表格有幾列Column
+```
+##複習 Subset (數字)
+```{r}
+NBA1415[1:3,] # 取前三行
+NBA1415[,2] # 取第二列
+```
+##複習 Subset (條件)
+```{r}
+# 取列名為Name的那一列Column, 同 NBA1415$Name
+head(NBA1415[,"Name"])
+# 取Team是SAN的所有行Row, 同 subset(NBA1415, Team=="SAN")
+head(NBA1415[NBA1415$Team=="SAN",])
+```
+
+##複習 字串比對
+```{r}
+grep("Tim",NBA1415$Name) #回傳符合條件的row index
+head(grepl("Tim",NBA1415$Name)) #回傳T or F
+NBA1415[grep("Tim",NBA1415$Name),] #搭配subset
+```
+
+##每次開始前
+- 打開GitHub桌面版
+- 打GitHub帳密與Git config資料
+- **Clone**上次交的作業回本機端(存到桌面)
++ 提示：左上角的+號，選**Clone**
+- 點兩下*Clone回來的資料夾*裡面的**.Rproj**
+<img src="fig/Clone.png" width="800px">
+
+##Debugging
+
+`>`
+
+可以執行程式碼
+
+`+`
+
+你之前的程式碼沒打完（不知道是哪裡沒打完的話，按Esc砍掉重練）
+
+
+##Debugging R的錯誤訊息
+- Message：有可能的錯誤通知，程式會繼續執行
+- Warning：有錯誤，但是不會影響太多，程式會繼續執行
+- Error：有錯，而且無法繼續執行程式
+- Condition：可能會發生的情況
+```{r}
+log(-1)
+```
+```{r, error=T}
+mena(NA)
+```
+   
+##從上次的解答開始
+```{r}
+for(i in 1:nrow(NBA1415)){
+    if(NBA1415[i,"GamesPlayed"]>70&NBA1415[i,"TotalPoints"]>1500){
+        print(NBA1415[i,c("Name","Team","Position")])
+    }
+}
+```
+
+## 都說了for不好用
+- For迴圈在R執行的效率極慢
+- 剛剛的問題：取出打超過70場，總得分超過1500分的球員姓名、所屬隊伍、守備位置。
+- 用subset() 一行搞定！
+```{r}
+subset(NBA1415,GamesPlayed>70&
+           TotalPoints>1500)[,c("Name","Team","Position")]
+```
+
+
+## 都說了for不好用-2
+Data Frame的subset [ ] 也可以一行搞定！
+```{r}
+NBA1415[NBA1415$GamesPlayed>70&
+            NBA1415$TotalPoints>1500,
+        c("Name","Team","Position")]
+```
+
+## 可是....還是有想用for的時候啊....
+想起上次上課...馬刺隊得分最高的好像是...
+```{r}
+San<-subset(NBA1415,Team=='SAN')
+order(San$TotalPoints,decreasing = T)
+San[order(San$TotalPoints,decreasing = T)[1],
+    c("Name","Team","TotalPoints")]
+```
+如果要得到每隊最高分的球員名單呢？
+
+##還是用for+unique() 取每隊最高分的球員名單
+
+```{r}
+unique(NBA1415$Team) #取不重複的隊名
+for(team in unique(NBA1415$Team)){
+    selectTeam<-subset(NBA1415,Team==team)
+    print(selectTeam[order(selectTeam$TotalPoints,decreasing = T)[1],
+                               c("Name","Team","TotalPoints")])
+}
+```
+
+##用rbind()把輸出整理成一個Data Frame
+```{r}
+FinalOutput<-NULL
+for(team in unique(NBA1415$Team)){
+    selectTeam<-subset(NBA1415,Team==team)
+    FinalOutput<-rbind(FinalOutput,selectTeam
+                       [order(selectTeam$TotalPoints,decreasing = T)[1],
+                               c("Name","Team","TotalPoints")])
+}
+FinalOutput
+```
+
+#問題？
+
+#Apply家族介紹
+
+##apply()
+有類似for迴圈的功能
+
+- apply(Data, MARGIN, FUN,…)
+    - Data：矩陣（Matrix），Data Frame
+    - MARGIN：1=row, 2=column
+    - FUN：函數
+    - …：函數要用的參數
+NBA1415的各列中，最大值是多少
+```{r}
+apply(NBA1415,2,max)
+```
+
+##apply()範例2
+NBA1415球季，出場數、出場總分鐘數、總分的最大值各是多少
+
+apply(Data, MARGIN, FUN,…)
+```{r}
+apply(NBA1415[,c("GamesPlayed","TotalMinutesPlayed","TotalPoints")]
+      ,2,mean)
+```
+
+##未來用得上的apply()快速功能
+
+- rowSums = apply(x, 1, sum)
+- rowMeans = apply(x, 1, mean)
+- colSums = apply(x, 2, sum)
+- colMeans = apply(x, 2, mean)
+
+
+##sapply(): Simplify
+- 如果回傳的list裡面，每個欄位長度都是1，回傳向量
+- 如果回傳的list裡面，每個欄位長度都一樣，回傳矩陣
+- sapply(Data, FUN,…)
+    - Data：矩陣（Matrix），Data Frame，**List**，**向量**
+    - FUN：函數
+    - …：函數要用的參數
+```{r}
+sapply(iris, mean)
+```
+
+
+##sapply()範例2
+NBA1415球季，出場數、出場總分鐘數、總分的平均值各是多少
+```{r}
+sapply(NBA1415[,c("GamesPlayed","TotalMinutesPlayed","TotalPoints")],
+       mean)
+```
+等同於
+```{r}
+apply(NBA1415[,c("GamesPlayed","TotalMinutesPlayed","TotalPoints")]
+      ,2,mean)
+```
+
+##lapply(): List
+- For List，用C寫的
+- lapply(Data, FUN,…)
+    - Data：矩陣（Matrix），Data Frame，List
+    - FUN：函數
+    - …：函數要用的參數
+```{r}
+lapply(iris, mean)
+``` 
+
+##lapply()範例2
+NBA1415球季，出場數、出場總分鐘數、總分的平均值各是多少
+
+lapply(Data, FUN,…)
+```{r}
+lapply(NBA1415[,c("GamesPlayed","TotalMinutesPlayed","TotalPoints")],
+       mean)
+``` 
+
+##tapply()
+向量分群後計算
+
+- tapply(Data, INDEX, FUN,…)
+    - Data：向量
+    - INDEX：分類因子
+    - FUN：函數
+    - …：函數要用的參數
+```{r}
+tapply(NBA1415$Name,NBA1415$Team,length)
+``` 
+    
+##split(), tapply()的朋友
+有tapply()的部分功能：**替向量做分群**
+
+1到30的向量，用第二個參數做分群
+```{r}
+split(1:30,gl(3, 10))
+``` 
+輸出結果是List--->應該要想到lapply()
+
+##split()+lapply()
+split()分群後的向量，用lapply()做運算
+```{r}
+lapply(split(1:30,gl(3, 10)),mean)
+``` 
+效果等同於
+```{r}
+tapply(1:30,gl(3, 10),mean)
+``` 
+
+##Data Frame也可以split()
+替Data Frame做分群
+
+- split(Data, 分群依據)
+```{r}
+NBA1415Team<-split(NBA1415[,c("TotalPoints","GamesPlayed")],
+                   NBA1415$Team)
+NBA1415Team
+``` 
+
+##split()搭配apply()家族使用
+```{r}
+lapply(NBA1415Team, colMeans) #回傳List
+sapply(NBA1415Team, colMeans) #回傳Data frame
+``` 
+
+##split()：用多個欄位來分群
+想要同時針對隊伍和守備位置做分群呢？
+
+**用list將分群依據包起來**
+
+- split(資料, list(分群依據1,分群依據2)) 
+```{r}
+NBA1415TP<-split(NBA1415[,c("TotalPoints","GamesPlayed")],
+                 list(NBA1415$Team,NBA1415$Position))
+sapply(NBA1415TP, colMeans)#一樣可以用apply家族計算平均值
+``` 
+
+
+##apply家族的使用時機
+- apply：想要apply一個函數功能到陣列（Matrix）的行或列。不太建議在data frame使用
+- lapply：想要apply一個函數功能到List中，回傳List
+- sapply：同上，但想要回傳的東西是向量（Vector）
+- tapply：想要對一個向量分群，分群後apply一個函數功能
+
+##類似apply家族的函數：aggregate()
+aggregate(資料, by=分組依據, FUN=函數功能)
+```{r}
+aggregate(NBA1415$TotalPoints, 
+          by=list(NBA1415$Team,NBA1415$Position), 
+          FUN=mean)
+``` 
+
+##類似apply家族的函數：aggregate()-2
+aggregate(formula, data=資料, FUN=函數功能)
+
+Formula: if you need all, put [.] into the formula (.~Team+Position)
+```{r}
+aggregate(TotalPoints ~ Team+Position, 
+          data = NBA1415, mean)
+``` 
+
+##Missing Value
+計算平均的時候，該不該跳過缺值
+```{r}
+x<-c(1,2,3,4,5,NA)
+mean(x)
+mean(x, na.rm=T)
+sum(x)
+sum(x, na.rm=T)
+``` 
+
+##Removing NA
+Subset
+```{r}
+x <- c(1, 2, NA, 4, NA, 5)
+x[! is.na(x)]
+complete.cases(x) #可使用在data frame，取出所有欄位都不是NA的row
+```
+
+#問題？？？？？
+
+#R Markdown
+
+##R Markdown
+- http://rmarkdown.rstudio.com/
+- R + Markdown
+    - R Markdown—knitr—>Markdown
+    - Markdown—markdown—>HTML
+- 用來撰寫可以重複執行/動態的 R語言執行報告
+- 報告格式：Slides, PDF, HTML, Word,…
+- 又要交作業了....
+
+##R Markdown 元件
+- 基於Markdown文件
+- 所有寫在R Code Chunks的R程式碼都會執行，並將結果輸出
+- 放上GitHub的文件，會輸出成.md檔
+
+![example](fig/RChunks.png)
+
+##Step 1 開啟新的R Markdown 檔案
+如果跳出是否要安裝Packages，選 **要**
+
+![example](fig/NewMarkdown.png)
+
+##Step 2 設定輸出格式
+最後要放上GitHub，所以選From Template裡的GitHub Document
+
+![example](fig/MarkdownFormat.png)
+
+##Step 3 設定文件基本資訊
+程式會產生內建的參考範例，先按“Knit”試試
+![example](fig/RChunks.png)
+
+## 自動生成的.md檔案在GitHub上的樣子
+自己試試看
+
+## R Code Chunk的參數
+- eval：要不要執行並顯示在輸出的Markdown檔案內
+- echo：要不要一起顯示程式碼以及執行結果
+- result：要不要顯示程式執行結果
+- warning, error, message：要不要顯示錯誤訊息
+- cache：是否要暫存結果
+
+
+##Homework 3
+分析NBA 2014到2015球季
+
+- 各隊最辛苦的球員（TotalMinutesPlayed最多）
+- 各隊得分王（TotalPoints最多）
+- 各隊最有效率的球員（總得分/出戰分鐘數 最高）
+- 各隊三分球出手最準的球員（ThreesMade/ThreesAttempted 最高）
+
+## Homework 3 詳細要求與配分1
+- Title: NBA 2014-2015球季 各隊分析 (`5 pt`)
+- 把資料讀進來的程式碼 (`5 pt`)
+- 次標題1：各隊最辛苦的球員 (`20 pt`)
+    - 標題 (`2`)，說明 (`3`)，程式碼 (`5`) 和結果 (`10`)
+    - 結果要包括隊名 (`2`) 與球員姓名 (`3`) 與總出場分鐘數 (`3`)，按照總出場分鐘數排序(大到小) (`2`)
+    
+## Homework 3 詳細要求與配分2
+- 次標題2：各隊得分王 (`20 pt`)
+    - 程式碼和結果，輸出要包括隊名與球員姓名與總分，按照總分排序
+- 次標題3：各隊最有效率的球員 (`25 pt`)
+    - 程式碼和結果，輸出要包括隊名與球員姓名與效率計算結果 (`8`)，按照效率計算結果排序
+- 次標題4：各隊三分球出手最準的球員 (`25 pt`)
+    - 程式碼和結果，輸出要包括隊名與球員姓名與三分球命中率 (`8`)，按照三分球命中率排序
+    
+##作業範例 — R Markdown
+![example](fig/HWRChunks.png)
+
+##作業範例 — Markdown@GitHub
+![example](fig/HWMarkdownEx.png)
+
+##作業繳交
+所有作業除了有特別寫，遲交一天扣5分，最多扣40分（8天）
+
+URL範例：
+https://github.com/yijutseng/BigDataCGUIM/blob/master/HW3.md
+
+版本碼是指BigDataCGUIM的SHA碼
+![example](fig/HWPage.png)
+
+#問題？？？？？？？？？？？
+
+#R Function
+
+##函數 Function
+- 將程式碼依功能要求，寫成可重複使用的『函數』
+    - mean()
+    - sum()
+- 好處：
+    - 程式碼變短，閱讀和偵錯容易
+    - 功能可以重複使用，節省開發時間
+    
+##定義一個新的函數
+函數名稱<-function(參數1, 參數2, ….)({程式碼們}
+
+四捨五入到小數點第二位
+```{r}
+round2<-function(vector){
+    round(vector,digits = 2)
+}
+round2(3.886)
+```
+
+##Lazy Evaluation
+沒用到Nothing參數，程式也不會出錯
+```{r}
+round2Lazy<-function(vector,nothing){
+    round(vector,digits = 2)
+}
+round2(3.886)
+```
+
+##Lazy Evaluation 2
+- 使用f參數時，沒有輸入b，但R也不會檢查
+- 在執行print(b)時才會跳出錯誤訊息
+```{r, error=T}
+f <- function(a, b) {
+        print(a)
+        print(b)
+}
+f(45)
+```
+
+##…參數
+- 意指引用其他函數的參數
+- apply(Data, MARGIN, FUN,…)
+- 例：平均再取四捨五入
+```{r}
+roundmean<-function(vector, ...){
+    round(mean(vector, ...),digits=2)
+}
+roundmean(c(1.1,2,3,4,5))
+roundmean(c(1.1,2,3,4,5,NA))
+roundmean(c(1.1,2,3,4,5,NA),na.rm=T)
+```
+
+##…參數 2
+```{r}
+roundmean<-function(vector, ...){
+    round(mean(vector, ...),digits=2)
+}
+roundmean(c(1.1,2,3,4,5))
+roundmean(c(1.1,2,3,4,5,NA))
+roundmean(c(1.1,2,3,4,5,NA),na.rm=T)
+```
+
+##參數預設值
+使用者如果沒有指定參數值，直接帶入預設
+```{r}
+roundDe<-function(v=1.111:10.111){
+    round(v,digits = 2)
+}
+roundDe(1.66:6.66)
+roundDe()
+```
+
+##retrun()
+停止函數執行，並回傳值
+```{r}
+round2<-function(v){
+    if(!is.numeric(v)){
+        print("輸入數字")
+        return()
+    }
+    round(v,digits = 2)
+}
+round2("a")
+```
+
+##函數也可以當作參數來用
+apply(Data, MARGIN, FUN,…)
+```{r}
+apply(iris,2,max)
+
+RoundNumber2<-function(v,XFun){
+    round(XFun(v),digits = 2)
+}
+RoundNumber2(1.1:10.1,mean)
+```
+
+#問題？？？？？？？？？？？
+
+#Getting Data
+
+##What is 'Data'
+http://en.wikipedia.org/wiki/Data
+
+>Data are values of qualitative or quantitative variables, belonging to a set of items.
+
+
+##Getting Data
+學會：
+
+- 找資料、抓資料、總之就是弄到資料
+- 資料前處理原則：tidy
+- 用R做到以上工作
+
+`Raw data` -> **Processing script** -> `Tidy data` -> Data analysis -> Data communication
+
+##課堂上玩得很開心的資料 Tidy Data
+- 一個欄位（Column）內只有一個數值，最好要有凡人看得懂的Column Name
+- 不同的觀察值應該要在不同行（Raw）
+- 一張表裡面，有所有分析需要的資料
+- 如果一定要多張表，中間一定要有index可以把表串起來
+- One file, one table
+```{R}
+NBA1415
+```
+
+
+##真實世界裡的資料 Raw Data: Html
+<img src="fig/html.png" width="800px">
+
+##真實世界裡的資料 Raw Data: Facebook
+<img src="fig/facebook.png" width="800px">
+
+##真實世界裡的資料 Raw Data: ?!
+<img src="fig/busApi.png" width="800px">
+
+
+##資料到底在哪裡？
+- 硬碟裡 
+- Open Data
+    - http://data.taipei/
+    - http://data.tycg.gov.tw/
+    - http://data.moi.gov.tw/
+    
+- 網頁裡（爬蟲！）
+- 任何地方
+
+##Open Data Example
+http://bit.ly/1U3pVoI
+<img src="fig/marriage.png" width="800px">
+
+##Open Data Example
+<img src="fig/marriageData.png" width="800px">
+
+
+## Reading Data
+讀檔的基本函數們：
+
+- `read.table`, `read.csv`, 讀取表格資料
+- `readLines`, 逐行讀取文字資料
+- `source`, 讀R的Obejct or script, 執行, ASCII (`dump`的相反) 
+- `dget`, 讀R的Obejct, ASCII (`dput`的相反)
+- `load`, 讀取已經在R裡面的資料（Ex: iris）
+
+
+## Writing Data
+寫檔的函數跟讀檔很像：
+
+- `write.table`
+- `writeLines`
+- `dump`
+- `dput`
+- `save`
+
+
+## ?read.table(), ?read.csv()
+
+The `read.table`, `read.csv` 是最常見的，會用這些就好
+
+有以下參數：
+
+- `file`, 檔名
+- `header`, 是否有欄位名稱（表頭）（T/F）
+- `sep`, 分隔符號
+- `colClasses`, 每一個欄位的類別，用向量表示 
+- `comment.char`, 把欄位包起來的符號
+- `skip`, 要跳過幾行？
+- `stringsAsFactors`, 要不要輸入成'Factor'（有序因子）
+
+##從網路上下載檔案 download.file
+使用RCurl Package
+
+download.file(URL, destfile=儲存檔名, method=?)
+
+method = "curl"-->For **https**
+```{r results='hide',message=FALSE, warning=F,cache=T}
+if (!require('RCurl')){
+    install.packages("RCurl")
+    library(RCurl)
+}
+download.file("https://raw.githubusercontent.com/yijutseng/BigDataCGUIM/master/files/opendata10401.csv", 
+              destfile = "open.csv", method = "curl")
+```
+
+## read.csv使用範例
+完全不用給參數
+```{r}
+data <- read.csv('open.csv')
+data
+```
+
+## 也可以讀Excel檔案
+要安裝xlsx 套件
+
+```r
+if (!require('xlsx')){
+    install.packages("xlsx")
+    library(xlsx)
+}
+ExcelData <- read.xlsx("data.xlsx",sheetIndex=1,header=TRUE)
+head(ExcelData)
+```
+
+##讀檔的時候R會自動
+
+- 跳過#開頭的任何行（Row）
+- 判斷要讀幾行
+- 判斷每個列（Column）的類別
+- 把欄位包起來的符號
+
+如果讀取時已指定**Column類別**以及**把欄位包起來的符號**，會快很多
+
+```{r}
+initial <- read.csv("open.csv", nrows = 100)
+classes <- sapply(initial, class)
+tabAll <- read.csv("open.csv", colClasses = classes)
+```

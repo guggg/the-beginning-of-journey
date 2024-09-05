@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet xmlns="http://twd.water.gov.tw/opendata/wqb">
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="qua_data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="update_date" type="xs:string" minOccurs="0" />
+                <xs:element name="update_time" type="xs:string" minOccurs="0" />
+                <xs:element name="qua_id" type="xs:string" minOccurs="0" />
+                <xs:element name="code_name" type="xs:string" minOccurs="0" />
+                <xs:element name="longitude" type="xs:string" minOccurs="0" />
+                <xs:element name="latitude" type="xs:string" minOccurs="0" />
+                <xs:element name="qua_cntu" type="xs:float" minOccurs="0" />
+                <xs:element name="qua_cl" type="xs:float" minOccurs="0" />
+                <xs:element name="qua_ph" type="xs:float" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+    <NewDataSet xmlns="">
+      <qua_data diffgr:id="qua_data1" msdata:rowOrder="0">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>CS00        </qua_id>
+        <code_name>雙溪淨水場</code_name>
+        <longitude>121.56094</longitude>
+        <latitude>25.11574</latitude>
+        <qua_cntu>0.01</qua_cntu>
+        <qua_cl>0.52</qua_cl>
+        <qua_ph>7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data2" msdata:rowOrder="1">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>CS01        </qua_id>
+        <code_name>衛理女中</code_name>
+        <longitude>121.54401</longitude>
+        <latitude>25.10325</latitude>
+        <qua_cntu>0.1</qua_cntu>
+        <qua_cl>0.45</qua_cl>
+        <qua_ph>7.1</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data3" msdata:rowOrder="2">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>CS02        </qua_id>
+        <code_name>雙溪國小                </code_name>
+        <longitude>121.55557</longitude>
+        <latitude>25.10763</latitude>
+        <qua_cntu>0.05</qua_cntu>
+        <qua_cl>0.33</qua_cl>
+        <qua_ph>7.3</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data4" msdata:rowOrder="3">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>CS03        </qua_id>
+        <code_name>華興加壓站</code_name>
+        <longitude>121.53476</longitude>
+        <latitude>25.10356</latitude>
+        <qua_cntu>0.18</qua_cntu>
+        <qua_cl>0.31</qua_cl>
+        <qua_ph>7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data5" msdata:rowOrder="4">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>CX00        </qua_id>
+        <code_name>長興淨水場</code_name>
+        <longitude>121.54043</longitude>
+        <latitude>25.01633</latitude>
+        <qua_cntu>0.03</qua_cntu>
+        <qua_cl>0.49</qua_cl>
+        <qua_ph>6.8</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data6" msdata:rowOrder="5">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>CX02        </qua_id>
+        <code_name>市政大樓</code_name>
+        <longitude>121.55661</longitude>
+        <latitude>25.04250</latitude>
+        <qua_cntu>0.04</qua_cntu>
+        <qua_cl>0.42</qua_cl>
+        <qua_ph>7.4</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data7" msdata:rowOrder="6">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>CX03        </qua_id>
+        <code_name>市議會</code_name>
+        <longitude>121.55360</longitude>
+        <latitude>25.04001</latitude>
+        <qua_cntu>0.05</qua_cntu>
+        <qua_cl>0.35</qua_cl>
+        <qua_ph>7.1</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data8" msdata:rowOrder="7">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>CX04        </qua_id>
+        <code_name>捷運忠孝復興站</code_name>
+        <longitude>121.53551</longitude>
+        <latitude>25.04251</latitude>
+        <qua_cntu>0.03</qua_cntu>
+        <qua_cl>0.42</qua_cl>
+        <qua_ph>7.4</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data9" msdata:rowOrder="8">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>CX05        </qua_id>
+        <code_name>南港高工</code_name>
+        <longitude>121.59892</longitude>
+        <latitude>25.05787</latitude>
+        <qua_cntu>0.08</qua_cntu>
+        <qua_cl>0.43</qua_cl>
+        <qua_ph>7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data10" msdata:rowOrder="9">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>CX06        </qua_id>
+        <code_name>南港加壓站</code_name>
+        <longitude>121.60829</longitude>
+        <latitude>25.04994</latitude>
+        <qua_cntu>0.02</qua_cntu>
+        <qua_cl>0.46</qua_cl>
+        <qua_ph>6.9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data11" msdata:rowOrder="10">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>CX07        </qua_id>
+        <code_name>挹翠加壓站</code_name>
+        <longitude>121.56617</longitude>
+        <latitude>25.02339</latitude>
+        <qua_cntu>0.11</qua_cntu>
+        <qua_cl>0.36</qua_cl>
+        <qua_ph>7.4</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data12" msdata:rowOrder="11">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>CX08        </qua_id>
+        <code_name>敦化國中                </code_name>
+        <longitude>121.53852</longitude>
+        <latitude>25.05305</latitude>
+        <qua_cntu>0.03</qua_cntu>
+        <qua_cl>0.51</qua_cl>
+        <qua_ph>7.3</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data13" msdata:rowOrder="12">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>GG00        </qua_id>
+        <code_name>公館淨水場</code_name>
+        <longitude>121.52221</longitude>
+        <latitude>25.01421</latitude>
+        <qua_cntu>0.06</qua_cntu>
+        <qua_cl>0.5</qua_cl>
+        <qua_ph>7.1</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data14" msdata:rowOrder="13">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>GG01        </qua_id>
+        <code_name>捷運台北車站</code_name>
+        <longitude>121.50946</longitude>
+        <latitude>25.04860</latitude>
+        <qua_cntu>0.05</qua_cntu>
+        <qua_cl>0.47</qua_cl>
+        <qua_ph>7.1</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data15" msdata:rowOrder="14">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>GG02        </qua_id>
+        <code_name>捷運中正紀念堂站</code_name>
+        <longitude>121.51198</longitude>
+        <latitude>25.03667</latitude>
+        <qua_cntu>0.04</qua_cntu>
+        <qua_cl>0.43</qua_cl>
+        <qua_ph>7.2</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data16" msdata:rowOrder="15">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>GG03        </qua_id>
+        <code_name>萬華國中</code_name>
+        <longitude>121.49045</longitude>
+        <latitude>25.03069</latitude>
+        <qua_cntu>0.02</qua_cntu>
+        <qua_cl>0.49</qua_cl>
+        <qua_ph>7.1</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data17" msdata:rowOrder="16">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>GG04        </qua_id>
+        <code_name>華江社區配水池</code_name>
+        <longitude>121.48482</longitude>
+        <latitude>25.03651</latitude>
+        <qua_cntu>0.09</qua_cntu>
+        <qua_cl>0.43</qua_cl>
+        <qua_ph>7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data18" msdata:rowOrder="17">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>GG05        </qua_id>
+        <code_name>西門國小</code_name>
+        <longitude>121.49537</longitude>
+        <latitude>25.04475</latitude>
+        <qua_cntu>-9</qua_cntu>
+        <qua_cl>-9</qua_cl>
+        <qua_ph>-9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data19" msdata:rowOrder="18">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>GG06        </qua_id>
+        <code_name>忠孝國小</code_name>
+        <longitude>121.52330</longitude>
+        <latitude>25.04445</latitude>
+        <qua_cntu>0.04</qua_cntu>
+        <qua_cl>0.45</qua_cl>
+        <qua_ph>7.2</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data20" msdata:rowOrder="19">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>GG07        </qua_id>
+        <code_name>螢橋國小</code_name>
+        <longitude>121.50684</longitude>
+        <latitude>25.02738</latitude>
+        <qua_cntu>0.06</qua_cntu>
+        <qua_cl>0.41</qua_cl>
+        <qua_ph>7.2</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data21" msdata:rowOrder="20">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT00        </qua_id>
+        <code_name>直潭淨水場               </code_name>
+        <longitude>121.52536</longitude>
+        <latitude>24.94578</latitude>
+        <qua_cntu>0.04</qua_cntu>
+        <qua_cl>0.49</qua_cl>
+        <qua_ph>6.7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data22" msdata:rowOrder="21">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT02        </qua_id>
+        <code_name>伸仗板配水池</code_name>
+        <longitude>121.53502</longitude>
+        <latitude>24.93163</latitude>
+        <qua_cntu>0.09</qua_cntu>
+        <qua_cl>0.55</qua_cl>
+        <qua_ph>7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data23" msdata:rowOrder="22">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT10        </qua_id>
+        <code_name>中和加壓站</code_name>
+        <longitude>121.51252</longitude>
+        <latitude>24.99116</latitude>
+        <qua_cntu>0.04</qua_cntu>
+        <qua_cl>0.5</qua_cl>
+        <qua_ph>6.9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data24" msdata:rowOrder="23">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT11        </qua_id>
+        <code_name>安康加壓站</code_name>
+        <longitude>121.50043</longitude>
+        <latitude>24.96287</latitude>
+        <qua_cntu>0.04</qua_cntu>
+        <qua_cl>0.55</qua_cl>
+        <qua_ph>6.9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data25" msdata:rowOrder="24">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT12        </qua_id>
+        <code_name>頂溪站</code_name>
+        <longitude>121.50717</longitude>
+        <latitude>25.01439</latitude>
+        <qua_cntu>0.06</qua_cntu>
+        <qua_cl>0.44</qua_cl>
+        <qua_ph>7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data26" msdata:rowOrder="25">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT13        </qua_id>
+        <code_name>中和國小</code_name>
+        <longitude>121.49252</longitude>
+        <latitude>25.00055</latitude>
+        <qua_cntu>0.03</qua_cntu>
+        <qua_cl>0.44</qua_cl>
+        <qua_ph>7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data27" msdata:rowOrder="26">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT14        </qua_id>
+        <code_name>積穗國小</code_name>
+        <longitude>121.47342</longitude>
+        <latitude>25.00029</latitude>
+        <qua_cntu>0.06</qua_cntu>
+        <qua_cl>0.35</qua_cl>
+        <qua_ph>7.2</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data28" msdata:rowOrder="27">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT15        </qua_id>
+        <code_name>捷運大坪林站</code_name>
+        <longitude>121.53337</longitude>
+        <latitude>24.98410</latitude>
+        <qua_cntu>0.03</qua_cntu>
+        <qua_cl>0.42</qua_cl>
+        <qua_ph>6.8</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data29" msdata:rowOrder="28">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT16        </qua_id>
+        <code_name>十二張加壓站</code_name>
+        <longitude>121.54142</longitude>
+        <latitude>24.96792</latitude>
+        <qua_cntu>0.03</qua_cntu>
+        <qua_cl>0.48</qua_cl>
+        <qua_ph>7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data30" msdata:rowOrder="29">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT17        </qua_id>
+        <code_name>景美女中</code_name>
+        <longitude>121.54800</longitude>
+        <latitude>24.98227</latitude>
+        <qua_cntu>0.04</qua_cntu>
+        <qua_cl>0.44</qua_cl>
+        <qua_ph>7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data31" msdata:rowOrder="30">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT18        </qua_id>
+        <code_name>木柵動物園</code_name>
+        <longitude>121.57299</longitude>
+        <latitude>25.00022</latitude>
+        <qua_cntu>0.13</qua_cntu>
+        <qua_cl>0.48</qua_cl>
+        <qua_ph>7.1</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data32" msdata:rowOrder="31">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT20        </qua_id>
+        <code_name>公館加壓站</code_name>
+        <longitude>121.52207</longitude>
+        <latitude>25.01300</latitude>
+        <qua_cntu>0.05</qua_cntu>
+        <qua_cl>0.45</qua_cl>
+        <qua_ph>6.7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data33" msdata:rowOrder="32">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT21        </qua_id>
+        <code_name>萬芳二號配水池</code_name>
+        <longitude>121.55794</longitude>
+        <latitude>25.00461</latitude>
+        <qua_cntu>0.04</qua_cntu>
+        <qua_cl>0.42</qua_cl>
+        <qua_ph>6.8</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data34" msdata:rowOrder="33">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT22        </qua_id>
+        <code_name>指南二加壓站</code_name>
+        <longitude>121.57322</longitude>
+        <latitude>24.97858</latitude>
+        <qua_cntu>0.06</qua_cntu>
+        <qua_cl>0.41</qua_cl>
+        <qua_ph>6.9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data35" msdata:rowOrder="34">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT23        </qua_id>
+        <code_name>木柵二期配水池</code_name>
+        <longitude>121.57822</longitude>
+        <latitude>24.98869</latitude>
+        <qua_cntu>0.07</qua_cntu>
+        <qua_cl>0.47</qua_cl>
+        <qua_ph>7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data36" msdata:rowOrder="35">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT24        </qua_id>
+        <code_name>三重加壓站</code_name>
+        <longitude>121.48565</longitude>
+        <latitude>25.06458</latitude>
+        <qua_cntu>0.05</qua_cntu>
+        <qua_cl>0.44</qua_cl>
+        <qua_ph>6.8</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data37" msdata:rowOrder="36">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT25        </qua_id>
+        <code_name>新北高中</code_name>
+        <longitude>121.48253</longitude>
+        <latitude>25.05676</latitude>
+        <qua_cntu>0.05</qua_cntu>
+        <qua_cl>0.43</qua_cl>
+        <qua_ph>6.8</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data38" msdata:rowOrder="37">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT26        </qua_id>
+        <code_name>指南六加壓站</code_name>
+        <longitude>121.57899</longitude>
+        <latitude>24.96866</latitude>
+        <qua_cntu>0.1</qua_cntu>
+        <qua_cl>0.39</qua_cl>
+        <qua_ph>7.7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data39" msdata:rowOrder="38">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT30        </qua_id>
+        <code_name>大同加壓站</code_name>
+        <longitude>121.52114</longitude>
+        <latitude>25.07032</latitude>
+        <qua_cntu>0.05</qua_cntu>
+        <qua_cl>0.51</qua_cl>
+        <qua_ph>6.9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data40" msdata:rowOrder="39">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT31        </qua_id>
+        <code_name>麗山國中</code_name>
+        <longitude>121.56421</longitude>
+        <latitude>25.08504</latitude>
+        <qua_cntu>0.04</qua_cntu>
+        <qua_cl>0.5</qua_cl>
+        <qua_ph>7.1</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data41" msdata:rowOrder="40">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT32        </qua_id>
+        <code_name>重慶國中</code_name>
+        <longitude>121.50988</longitude>
+        <latitude>25.07802</latitude>
+        <qua_cntu>0.05</qua_cntu>
+        <qua_cl>0.48</qua_cl>
+        <qua_ph>7.1</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data42" msdata:rowOrder="41">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT33        </qua_id>
+        <code_name>台北海洋技術學院</code_name>
+        <longitude>121.46268</longitude>
+        <latitude>25.10985</latitude>
+        <qua_cntu>0.06</qua_cntu>
+        <qua_cl>0.44</qua_cl>
+        <qua_ph>7.7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data43" msdata:rowOrder="42">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT34        </qua_id>
+        <code_name>介壽國中</code_name>
+        <longitude>121.54829</longitude>
+        <latitude>25.05794</latitude>
+        <qua_cntu>0.06</qua_cntu>
+        <qua_cl>0.42</qua_cl>
+        <qua_ph>6.9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data44" msdata:rowOrder="43">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT35        </qua_id>
+        <code_name>士林國中</code_name>
+        <longitude>121.50809</longitude>
+        <latitude>25.09652</latitude>
+        <qua_cntu>0.02</qua_cntu>
+        <qua_cl>0.43</qua_cl>
+        <qua_ph>6.9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data45" msdata:rowOrder="44">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT36        </qua_id>
+        <code_name>陽明高中</code_name>
+        <longitude>121.50891</longitude>
+        <latitude>25.09335</latitude>
+        <qua_cntu>0.05</qua_cntu>
+        <qua_cl>0.41</qua_cl>
+        <qua_ph>7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data46" msdata:rowOrder="45">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT37        </qua_id>
+        <code_name>捷運石牌站</code_name>
+        <longitude>121.50743</longitude>
+        <latitude>25.11584</latitude>
+        <qua_cntu>0.04</qua_cntu>
+        <qua_cl>0.48</qua_cl>
+        <qua_ph>6.9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data47" msdata:rowOrder="46">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT38        </qua_id>
+        <code_name>天母加壓站</code_name>
+        <longitude>121.52530</longitude>
+        <latitude>25.12182</latitude>
+        <qua_cntu>0.04</qua_cntu>
+        <qua_cl>0.48</qua_cl>
+        <qua_ph>6.9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data48" msdata:rowOrder="47">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT39        </qua_id>
+        <code_name>關渡國小</code_name>
+        <longitude>121.45823</longitude>
+        <latitude>25.12799</latitude>
+        <qua_cntu>0.02</qua_cntu>
+        <qua_cl>0.5</qua_cl>
+        <qua_ph>7.1</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data49" msdata:rowOrder="48">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT40        </qua_id>
+        <code_name>捷運淡水站</code_name>
+        <longitude>121.43730</longitude>
+        <latitude>25.16947</latitude>
+        <qua_cntu>0.04</qua_cntu>
+        <qua_cl>0.45</qua_cl>
+        <qua_ph>6.9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data50" msdata:rowOrder="49">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT41        </qua_id>
+        <code_name>北投第4配水池</code_name>
+        <longitude>121.49650</longitude>
+        <latitude>25.14770</latitude>
+        <qua_cntu>-9</qua_cntu>
+        <qua_cl>-9</qua_cl>
+        <qua_ph>-9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data51" msdata:rowOrder="50">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT42        </qua_id>
+        <code_name>北投加壓站</code_name>
+        <longitude>121.49316</longitude>
+        <latitude>25.12045</latitude>
+        <qua_cntu>0.04</qua_cntu>
+        <qua_cl>0.44</qua_cl>
+        <qua_ph>6.8</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data52" msdata:rowOrder="51">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT50        </qua_id>
+        <code_name>松山加壓站</code_name>
+        <longitude>121.55965</longitude>
+        <latitude>25.06639</latitude>
+        <qua_cntu>0.17</qua_cntu>
+        <qua_cl>0.5</qua_cl>
+        <qua_ph>6.9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data53" msdata:rowOrder="52">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT51        </qua_id>
+        <code_name>內溝里加壓站</code_name>
+        <longitude>121.61561</longitude>
+        <latitude>25.08017</latitude>
+        <qua_cntu>0.05</qua_cntu>
+        <qua_cl>0.35</qua_cl>
+        <qua_ph>6.8</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data54" msdata:rowOrder="53">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT52        </qua_id>
+        <code_name>潭美國小</code_name>
+        <longitude>121.58255</longitude>
+        <latitude>25.06248</latitude>
+        <qua_cntu>0.07</qua_cntu>
+        <qua_cl>0.49</qua_cl>
+        <qua_ph>7.1</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data55" msdata:rowOrder="54">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT53        </qua_id>
+        <code_name>東湖國中</code_name>
+        <longitude>121.58088</longitude>
+        <latitude>25.07750</latitude>
+        <qua_cntu>0.09</qua_cntu>
+        <qua_cl>0.4</qua_cl>
+        <qua_ph>7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data56" msdata:rowOrder="55">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT54        </qua_id>
+        <code_name>民生加壓站</code_name>
+        <longitude>121.54186</longitude>
+        <latitude>25.14058</latitude>
+        <qua_cntu>0.03</qua_cntu>
+        <qua_cl>0.51</qua_cl>
+        <qua_ph>7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data57" msdata:rowOrder="56">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>JT55        </qua_id>
+        <code_name>興隆公營住宅1區</code_name>
+        <longitude>121.55806</longitude>
+        <latitude>24.98833</latitude>
+        <qua_cntu>0.01</qua_cntu>
+        <qua_cl>0.38</qua_cl>
+        <qua_ph>6.9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data58" msdata:rowOrder="57">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>YM00        </qua_id>
+        <code_name>陽明淨水場</code_name>
+        <longitude>121.52388</longitude>
+        <latitude>25.15261</latitude>
+        <qua_cntu>0.01</qua_cntu>
+        <qua_cl>0.5</qua_cl>
+        <qua_ph>7.3</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data59" msdata:rowOrder="58">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>YM01        </qua_id>
+        <code_name>隧道                  </code_name>
+        <longitude>121.50303</longitude>
+        <latitude>25.14582</latitude>
+        <qua_cntu>-9</qua_cntu>
+        <qua_cl>-9</qua_cl>
+        <qua_ph>-9</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data60" msdata:rowOrder="59">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>YM02        </qua_id>
+        <code_name>中正路配水池                 </code_name>
+        <longitude>121.53615</longitude>
+        <latitude>25.15329</latitude>
+        <qua_cntu>0.03</qua_cntu>
+        <qua_cl>0.49</qua_cl>
+        <qua_ph>7</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data61" msdata:rowOrder="60">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>YM03        </qua_id>
+        <code_name>中山樓                 </code_name>
+        <longitude>121.54510</longitude>
+        <latitude>25.15725</latitude>
+        <qua_cntu>0.13</qua_cntu>
+        <qua_cl>0.48</qua_cl>
+        <qua_ph>7.5</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data62" msdata:rowOrder="61">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>YM04        </qua_id>
+        <code_name>鹿角坑(三加)</code_name>
+        <longitude>121.54746</longitude>
+        <latitude>25.18501</latitude>
+        <qua_cntu>0.58</qua_cntu>
+        <qua_cl>0.59</qua_cl>
+        <qua_ph>7.8</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data63" msdata:rowOrder="62">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>YM05        </qua_id>
+        <code_name>泉源國小</code_name>
+        <longitude>121.51595</longitude>
+        <latitude>25.15081</latitude>
+        <qua_cntu>1.07</qua_cntu>
+        <qua_cl>0.28</qua_cl>
+        <qua_ph>8.1</qua_ph>
+      </qua_data>
+      <qua_data diffgr:id="qua_data64" msdata:rowOrder="63">
+        <update_date>2016-03-25</update_date>
+        <update_time>09:30:00  </update_time>
+        <qua_id>YM06        </qua_id>
+        <code_name>三角埔加壓站</code_name>
+        <longitude>121.52562</longitude>
+        <latitude>25.12964</latitude>
+        <qua_cntu>0.05</qua_cntu>
+        <qua_cl>0.42</qua_cl>
+        <qua_ph>6.9</qua_ph>
+      </qua_data>
+    </NewDataSet>
+  </diffgr:diffgram>
+</DataSet>

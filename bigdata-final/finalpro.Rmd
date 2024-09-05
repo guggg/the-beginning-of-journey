@@ -1,0 +1,121 @@
+---
+title: "Final project"
+output: github_document
+---
+##旅館營運報表
+```{r echo=TRUE}
+hot_ser_10 <- read.csv("C:/Users/Administrator/Desktop/bigdata final/123/旅館營運報表2010-1~12.CSV")
+hot_ser_11 <- read.csv("C:/Users/Administrator/Desktop/bigdata final/123/旅館營運報表2011-1~12.CSV")
+hot_ser_12 <- read.csv("C:/Users/Administrator/Desktop/bigdata final/123/旅館營運報表2012-1~12.CSV")
+hot_ser_13 <- read.csv("C:/Users/Administrator/Desktop/bigdata final/123/旅館營運報表2013-1~12.CSV")
+hot_ser_14 <- read.csv("C:/Users/Administrator/Desktop/bigdata final/123/旅館營運報表2014-1~12.CSV")
+hot_ser_15 <- read.csv("C:/Users/Administrator/Desktop/bigdata final/123/旅館營運報表2015-1~12.CSV")
+hot_ser_16 <- read.csv("C:/Users/Administrator/Desktop/bigdata final/123/旅館營運報表2016-1~3月.CSV")
+```
+
+## 國外來台觀光人口成長
+```{r echo=TRUE}
+for_fundata_1 <- read.csv("C:/Users/Administrator/Desktop/bigdata final/123/國外來台觀光人口成長-1.CSV")
+for_fundata_2 <- read.csv("C:/Users/Administrator/Desktop/bigdata final/123/國外來台觀光人口成長-2.CSV")
+for_fundata_3 <- read.csv("C:/Users/Administrator/Desktop/bigdata final/123/國外來台觀光人口成長-3.CSV")
+for_fundata_4 <- read.csv("C:/Users/Administrator/Desktop/bigdata final/123/國外來台觀光人口成長-4.CSV")
+for_fundata_5 <- read.csv("C:/Users/Administrator/Desktop/bigdata final/123/國外來台觀光人口成長-5.CSV")
+for_fundata_6 <- read.csv("C:/Users/Administrator/Desktop/bigdata final/123/國外來台觀光人口成長-6.CSV")
+hot1016_pic1<- read.csv("C:/Users/Administrator/Desktop/bigdata final/1016hot_pic1.CSV")
+hot1016_pic2<- read.csv("C:/Users/Administrator/Desktop/bigdata final/1016hot_pic2.CSV")
+hot1016_pic3<- read.csv("C:/Users/Administrator/Desktop/bigdata final/1016hot_pic3.CSV")
+
+interno_pic1<- read.csv("C:/Users/Administrator/Desktop/bigdata final/1016interno_pic.CSV")
+interno_pic2<- read.csv("C:/Users/Administrator/Desktop/bigdata final/1016interno2_pic.CSV")
+```
+
+
+```{r echo=T}
+#if(!require('rgdal')){#forfortify()
+#install.packages("rgdal");
+library(rgdal)
+#}
+
+#if(!require('rgeos')){#forfortify()
+#install.packages("rgeos");
+library(rgeos)
+#}
+
+#if(!require('maptools')){#forreadShapeSpatial()
+#install.packages("maptools");
+library(maptools)
+#}
+
+
+library(sp)
+
+newtpe_map<-readShapeSpatial("C:/Users/Administrator/Desktop/bigdata final/NEWTPE_MAP/新北市區界.shp")
+names(newtpe_map)
+
+library(ggplot2)
+head(newtpe_map$ADMIT_ID)
+newtpe_map.df<-fortify(newtpe_map, region ="ADMIT_ID")
+head(newtpe_map.df,10)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+ 
+```{r echo=T}
+
+#library(RColorBrewer)
+
+#newtpe_map.df$long<-as.numeric(newtpe_map.df$long)
+#newtpe_map.df$lat<-as.numeric(newtpe_map.df$lat)
+
+#TaipeiMap<-get_map(location=c(121.43,24.93,121.62,25.19),zoom=14,maptype='watercolor')
+
+#newtpemap <-ggmap(TaipeiMap) + geom_polygon(data = newtpe_map.df, aes(x = newtpe_map.df$long, y = newtpe_map.df$lat, group = group ),color = "black", size = 0.25)+coord_map()+scale_fill_gradientn(colours = brewer.pal(9,"Reds"))+theme_void()+labs(title = "2 Taipei")
+
+#newtpemap
+```
+#北區旅店旅館10年至16年，總營業收入趨勢圖。
+16年因為資料只有1-3月，所以總營業收入額比較低，其他不影響。
+
+```{r echo=T}
+library(lattice)
+library(datasets)
+
+xyplot(totalrev~X,data=hot1016_pic1,type = "b")
+```
+#北區旅店旅館10年至16年，住用率趨勢圖。
+
+```{r echo=T}
+library(lattice)
+library(datasets)
+xyplot(rentper~X,data=hot1016_pic2,type = "b")
+
+```
+#北區旅店旅館10年至16年，平均房價趨勢圖。
+
+```{r echo=T}
+library(lattice)
+library(datasets)
+xyplot(averprice~X,data=hot1016_pic3,type = "b")
+```
+#北區國際與一般旅館10年至16年，平均入住率。
+
+```{r echo=T}
+library(lattice)
+library(datasets)
+xyplot(Occupancy.Rate~YEAR|variable,data=interno_pic1, type="b",layout=c(2,1))
+
+```
+#北區國際與一般旅館10年至16年，平均房價。
+
+```{r echo=T}
+library(lattice)
+library(datasets)
+xyplot(priceaver~YEAR|variable,data=interno_pic2, type="b",layout=c(2,1))
+
+```
+
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

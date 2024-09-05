@@ -1,0 +1,68 @@
+---
+title: "乳癌/糖尿病 預測模型"
+output: github_document
+---
+##資料前處理
+
+###資料讀取
+此資料來源為UCI Machine Learning Repository。
+
+資料由威斯康星大學醫院 威斯康星州麥迪遜市Dr. Wolberg醫生提供，記載由各個醫療檢測紀錄相關，記錄到的各個探勘數值，一共有9個參數，依序有叢厚度、細胞均勻大小、細胞形狀、細胞邊際附著力、單上皮細胞尺寸、裸核、布蘭德染色質、普通核仁、有絲分裂情形。
+主要由這些參數，對照紀錄，來判斷是否會得到乳癌的可能。
+另外，分類結果為二元分類，良性(benign)及惡性(malignant)。
+```{r}
+library(mlbench)
+data(BreastCancer)
+head(BreastCancer)
+```
+
+###處理資料
+
+```{r}
+BreastCancerC<-BreastCancer[complete.cases(BreastCancer),
+!names(BreastCancer)%in%c("Id")]
+c(nrow(BreastCancer),nrow(BreastCancerC))
+```
+
+###分成訓練組跟測試組,並紀錄各組人數
+隨機將4/5的資料分到訓練組（Test==F），剩下1/5為測試組（Test==T〕。
+```{r}
+BreastCancerC$Test<-F
+BreastCancerC[
+sample(1:nrow(BreastCancerC),nrow(BreastCancerC)/5),]$Test<-T
+c(sum(BreastCancerC$Test==F),sum(BreastCancerC$Test==T))
+```
+可得訓練組案例數為547，測試組案例數為136。
+
+## 預測模型建立
+
+### 模型建立
+
+由於變數眾多，而輸出為二元類別變項，malignant及benign，所以選擇邏輯回歸演算法建立模型。
+
+```{r warning=F,message=F}
+fit<-glm(Class~., BreastCancerC[BreastCancerC$Test==F,],family="binomial")
+library(MASS)
+finalFit<-stepAIC(fit,direction = "both",trace = F)
+summary(finalFit)$coefficients
+```
+
+### 模型說明
+
+由上述參數可知，使用多種參數檢測人體所得到醫療資料，以邏輯迴歸建立模型預測是否得到該病症，經最佳化後，模型使用參數為`r rownames(summary(finalFit)$coefficient)[-1]`，共`r nrow(summary(finalFit)$coefficient)`個參數，各參數代表從人體檢測出來的數據值。
+
+
+```{r warning=F,message=F,fig.height=4.5}
+MinePred<-predict(finalFit,newdata = BreastCancerC[BreastCancerC$Test==T,])
+MineAns<-ifelse(MinePred<0.5,"benign","malignant") 
+MineAns<-factor(MineAns,levels = c("benign","malignant"))
+library(caret)
+sensitivity(MineAns,BreastCancerC[BreastCancerC$Test==T,]$Class)
+specificity(MineAns,BreastCancerC[BreastCancerC$Test==T,]$Class)
+posPredValue(MineAns,BreastCancerC[BreastCancerC$Test==T,]$Class)
+negPredValue(MineAns,BreastCancerC[BreastCancerC$Test==T,]$Class)
+```
+- 敏感度 `r sensitivity(MineAns,BreastCancerC[BreastCancerC$Test==T,]$Class)*100`%
+- 特異性 `r specificity(MineAns,BreastCancerC[BreastCancerC$Test==T,]$Class)*100`%
+- 陽性預測率 `r posPredValue(MineAns,BreastCancerC[BreastCancerC$Test==T,]$Class)*100`%
+- 陰性預測率 `r negPredValue(MineAns,BreastCancerC[BreastCancerC$Test==T,]$Class)*100`%

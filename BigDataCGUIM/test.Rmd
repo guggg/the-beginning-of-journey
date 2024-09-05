@@ -1,0 +1,49 @@
+---
+title: "Untitled"
+output: github_document
+---
+## O
+```{r results='hide',message=FALSE}
+if (!require('jsonlite')){
+    install.packages("jsonlite")
+    library(jsonlite)
+}
+if (!require('curl')){
+    install.packages("curl")
+    library(curl)
+}
+```
+
+## Graph API in R
+
+```{r results='hide',message=FALSE}
+if (!require('httr')){
+    install.packages("httr")
+    library(httr)
+}
+```
+```{r}
+#put your token
+token<-"CAACEdEose0cBAOW9QjjEMGHGp54JEGytGz9tPRltLiHRGJsHae0dSEHxlVmogqJ4hd8EoUQvB3yvDWFDpnHX8dfA2AIgelMfXQ7jZCrQbeaTEIWfjZCWoVZCzZB3cqrq8HFwr73qD1eaiNZAZCmFq0iZCi6kWFHn6Dh8gPFkRLMqvLhl17CuvbpixEO6k0ZBr1FcXq9L9pmFvL3JeX1ZCIBg8" #put your token
+FBData = GET(paste0("https://graph.facebook.com/v2.5/tsaiingwen?fields=posts{message,likes.summary(true)}&access_token=",token))
+names(FBData)
+```
+
+
+## Graph API in R
+
+```{r}
+json1 = content(FBData)
+json2 = jsonlite::fromJSON(toJSON(json1))
+names(json2)
+names(json2$posts)
+names(json2$posts$data)
+```
+
+## Graph API in R
+
+```{r}
+json2$posts$data$message[[1]]
+json2$posts$data$likes$summary$total_count[[1]]
+```
+

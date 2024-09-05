@@ -1,0 +1,75 @@
+Facebook粉絲團分析（分析專頁：Cherng）
+================
+
+程式説明在這裡～～～ 範例：分析百萬粉絲紅人來膜XXXOOOXXXOO，資料分析區間為2016/01/01至 2016/03/28XXXOOOOO
+
+讀取Cherng粉絲團資料
+--------------------
+
+``` r
+if (!require('Rfacebook')){
+    install.packages("Rfacebook")
+    library(Rfacebook)
+}
+```
+
+``` r
+token<-'CAACEdEose0cBAGxkpPvhjqW0GP9E7StzT9OKJbI2Q2xG06rvW8p11cxjl3ZBihtWYxgMexf0lRME37INEp6PhzWy1lu4gnuQ0a0POOh74ihdADyVuG3cpk0niGgeSH8z9XB7Ms6KGGZC8kRWY1SWaIvEcXG3Ee85on5bdZAW9ZCNO71ZAZBO20P7B1WLpBsCn3KqG5Smt3tDMtNpGrx8tP'
+totalPage<-NULL
+lastDate<-Sys.Date()
+DateVectorStr<-as.character(seq(as.Date("2016-01-01"),lastDate,by="5 days"))
+for(i in 1:(length(DateVectorStr)-1)){
+    tempPage<-getPage("cherngs.y", token,
+                      since = DateVectorStr[i],until = DateVectorStr[i+1])
+    totalPage<-rbind(totalPage,tempPage)
+}
+```
+
+    ## 2 posts 1 posts 5 posts 4 posts 7 posts 1 posts 3 posts 4 posts 3 posts 2 posts 3 posts 1 posts 4 posts 3 posts 1 posts 1 posts 5 posts
+
+``` r
+nrow(totalPage)
+```
+
+    ## [1] 50
+
+2016/01/01至2016/03/28Cherng粉絲團一共有50篇文章
+
+每日發文數分析
+--------------
+
+說明說明～～～
+
+範例：分析Cherng粉絲團每天的發文數，由於日期格式OOXOXX， 先將其轉換為台灣時區...xxxooo
+
+``` r
+totalPage$datetime <- as.POSIXct(totalPage$created_time, 
+                                 format = "%Y-%m-%dT%H:%M:%S+0000", 
+                                 tz = "GMT") #2016-01-16T15:05:36+0000
+totalPage$dateTPE <- format(totalPage$datetime, "%Y-%m-%d", 
+                            tz = "Asia/Taipei") #2016-01-16
+totalPage$weekdays <-weekdays(as.Date(totalPage$dateTPE))
+PostCount<-aggregate(id~dateTPE,totalPage,length)
+library(knitr)
+kable(head(PostCount[order(PostCount$id,decreasing = T),]))
+```
+
+|     | dateTPE    |   id|
+|-----|:-----------|----:|
+| 11  | 2016-01-23 |    3|
+| 1   | 2016-01-01 |    2|
+| 5   | 2016-01-14 |    2|
+| 6   | 2016-01-16 |    2|
+| 9   | 2016-01-21 |    2|
+| 12  | 2016-01-24 |    2|
+
+討論討論～～～～2016/01/23（週六）的發文數最多，一共有三篇，ooooxxx， 2016/01/01和2016/01/14居次，01/14是來膜子發行日oooxxx
+
+每日likes數分析
+---------------
+
+每日comments數分析
+------------------
+
+每日shares數分析
+----------------

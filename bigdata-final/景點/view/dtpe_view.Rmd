@@ -1,0 +1,26 @@
+---
+title: "Untitled"
+output: github_document
+---
+#讀黨
+```{r}
+library(jsonlite)
+url<-'C:/Users/Administrator/Desktop/bigdata final/景點/view/data.json'
+DTPE_view <- fromJSON(url, flatten = TRUE)
+
+```
+
+
+#雙北景點分布
+```{r}
+library(ggmap)
+twmap.n <- get_map(c(121.43,24.93,121.62,25.19), zoom = 11,language = "zh-TW",maptype = 'roadmap')
+
+DTPE_view$longitude<-as.numeric(DTPE_view$longitude)
+DTPE_view$latitude<-as.numeric(DTPE_view$latitude)
+
+HotelMap = ggmap(twmap.n)+ geom_point(data=subset(DTPE_view), aes(x=DTPE_view$longitude, y=DTPE_view$latitude,color="VIEWS_POSITION"))
+
+HotelMap
+```
+
